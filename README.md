@@ -1,3 +1,3 @@
-# Alex Rao Portfolio v1 — First hardcoded version
+# Vedant Paste Portfolio
 
-
+Personal portfolio showcasing projects, certifications, achievements, and technical learning.

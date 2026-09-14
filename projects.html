@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects — Alex Rao</title>
+  <title>Projects — Vedant Paste</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&family=Permanent+Marker&display=swap"
@@ -660,61 +660,139 @@
   <script>
     var projects = [
       {
-        id: "sentrychain",
-        name: "SentryChain",
-        tag: "smart contract auditor",
-        desc: "An AI-powered smart contract security auditor built on a multi-agent LangGraph architecture. Top portfolio priority, aimed at filling a gap in blockchain and distributed-systems work. Roadmapped as a 6-8 week MVP build.",
-        stack: ["langgraph", "python", "solidity parsing", "multi-agent"],
+        id: "aidrac",
+        name: "AIDRAC",
+        tag: "agentic disaster response coordinator",
+        desc: "An Agentic AI Disaster Response Coordinator designed to help people understand disaster situations, assess risk, find relevant emergency facilities, and make informed decisions. The platform combines a React frontend, FastAPI backend, PostgreSQL, Leaflet maps, government alert ingestion, routing, and an agentic AI layer.",
+        stack: ["react", "typescript", "fastapi", "postgresql", "leaflet", "langgraph", "docker"],
         nodes: [
-          { x: 60, y: 70, label: "contract\nparser", color: "#E8C468" },
-          { x: 150, y: 120, label: "vulnerability\nscanner", color: "#4FB4A8" },
-          { x: 240, y: 70, label: "risk\nreport", color: "#E8C468" }
+          { x: 50, y: 110, label: "alerts", color: "#E8C468" },
+          { x: 150, y: 55, label: "incident\ncontext", color: "#4FB4A8" },
+          { x: 150, y: 165, label: "risk +\nlocation", color: "#4FB4A8" },
+          { x: 260, y: 110, label: "decision\nsupport", color: "#E8C468" }
         ],
-        edges: [[0, 1, "#E8C468"], [1, 2, "#4FB4A8"]],
-        caption: "3-node LangGraph audit pipeline", live: "", video: ""
+        edges: [[0, 1, "#E8C468"], [0, 2, "#4FB4A8"], [1, 3, "#E8C468"], [2, 3, "#4FB4A8"]],
+        caption: "alert → context → risk → decision support", live: "", video: ""
       },
       {
-        id: "ecorx",
-        name: "EcoRx",
-        tag: "surplus redistribution agent",
-        desc: "A LangGraph agent that routes surplus goods to where they're needed. Vision agent reads the input, Compliance agent checks it against rules, Matching agent finds the right recipient. Built as a strict milestone-by-milestone engagement.",
-        stack: ["langgraph", "python", "multi-agent"],
+        id: "pentest",
+        name: "Penetration Testing Framework",
+        tag: "security testing platform",
+        desc: "A security-focused framework that brings reconnaissance, vulnerability analysis, controlled attack simulations, exploitation tooling, and reporting into one application. It integrates Nmap, NVD-based CVE matching, Metasploit RPC, SQLMap, Hashcat, and report generation through a Flask API and web interface.",
+        stack: ["python", "flask", "sqlite", "nmap", "metasploit", "sqlmap", "hashcat"],
         nodes: [
-          { x: 60, y: 70, label: "vision", color: "#E8C468" },
-          { x: 150, y: 120, label: "compliance", color: "#4FB4A8" },
-          { x: 240, y: 70, label: "matching", color: "#E8C468" }
+          { x: 45, y: 110, label: "recon", color: "#E8C468" },
+          { x: 130, y: 55, label: "analysis", color: "#4FB4A8" },
+          { x: 130, y: 165, label: "testing", color: "#4FB4A8" },
+          { x: 245, y: 110, label: "report", color: "#E8C468" }
         ],
-        edges: [[0, 1, "#E8C468"], [1, 2, "#4FB4A8"]],
-        caption: "3-node LangGraph architecture", live: "", video: ""
+        edges: [[0, 1, "#E8C468"], [0, 2, "#4FB4A8"], [1, 3, "#E8C468"], [2, 3, "#4FB4A8"]],
+        caption: "recon → analysis/testing → reporting", live: "", video: ""
       },
       {
-        id: "medisphere",
-        name: "MediSphere AI",
-        tag: "agentic health navigator",
-        desc: "An Agentic AI Personal Health Navigator, built under a 3-day deadline. Concept note specifies a 7-agent architecture; working scope covers a Supervisor routing between a Report Parser agent and a Medical Management agent.",
-        stack: ["langgraph", "langchain", "streamlit", "gemini / groq apis"],
+        id: "skillswapper",
+        name: "Skill Swapper Platform",
+        tag: "peer-to-peer skill exchange",
+        desc: "A platform concept built around exchanging skills between people — turning what someone knows into something they can teach, learn, practice, or trade with another user.",
+        stack: ["web platform", "user profiles", "skill matching", "peer exchange"],
         nodes: [
-          { x: 150, y: 50, label: "supervisor", color: "#E8C468" },
-          { x: 80, y: 130, label: "report\nparser", color: "#4FB4A8" },
-          { x: 220, y: 130, label: "medical\nmgmt", color: "#4FB4A8" }
+          { x: 55, y: 110, label: "skills", color: "#E8C468" },
+          { x: 150, y: 55, label: "profiles", color: "#4FB4A8" },
+          { x: 150, y: 165, label: "matching", color: "#4FB4A8" },
+          { x: 250, y: 110, label: "exchange", color: "#E8C468" }
         ],
-        edges: [[0, 1, "#4FB4A8"], [0, 2, "#4FB4A8"]],
-        caption: "supervisor + 2-agent architecture", live: "", video: ""
+        edges: [[0, 1, "#E8C468"], [1, 2, "#4FB4A8"], [2, 3, "#E8C468"]],
+        caption: "profile → match → skill exchange", live: "", video: ""
       },
       {
-        id: "clearspace",
-        name: "ClearSpace AI",
-        tag: "local-first storage manager",
-        desc: "A privacy-first Windows storage manager, GPLv3 and free/open-source. Scans for files unused 2-12 months, detects duplicates, and auto-tracks Downloads for cleanup — all processing on-device, nothing sent to the cloud.",
-        stack: ["python", "local ai", "duplicate hashing", "gplv3"],
+        id: "commandlineassistant",
+        name: "CommandLineAssistant",
+        tag: "command-line productivity assistant",
+        desc: "A command-line focused assistant designed to make terminal work easier by turning common tasks and commands into a more accessible workflow.",
+        stack: ["python", "cli", "automation", "developer tooling"],
         nodes: [
-          { x: 50, y: 100, label: "scan", color: "#E8C468" },
-          { x: 150, y: 60, label: "detect\nduplicates", color: "#4FB4A8" },
-          { x: 150, y: 140, label: "quarantine", color: "#4FB4A8" },
-          { x: 250, y: 100, label: "auto-delete\n(confirmed)", color: "#E8C468" }
+          { x: 55, y: 110, label: "command", color: "#E8C468" },
+          { x: 150, y: 55, label: "assistant", color: "#4FB4A8" },
+          { x: 150, y: 165, label: "execution", color: "#4FB4A8" },
+          { x: 250, y: 110, label: "result", color: "#E8C468" }
         ],
-        edges: [[0, 1, "#E8C468"], [0, 2, "#E8C468"], [1, 3, "#4FB4A8"], [2, 3, "#4FB4A8"]],
-        caption: "on-device cleanup flow", live: "", video: ""
+        edges: [[0, 1, "#E8C468"], [1, 2, "#4FB4A8"], [2, 3, "#E8C468"]],
+        caption: "command → assistance → execution → result", live: "", video: ""
+      },
+      {
+        id: "billingsystem",
+        name: "Billing System",
+        tag: "billing and record management",
+        desc: "A billing-focused application for organizing customer, transaction, and billing workflows in a structured digital system.",
+        stack: ["application development", "billing workflows", "data management"],
+        nodes: [
+          { x: 55, y: 110, label: "customer", color: "#E8C468" },
+          { x: 150, y: 55, label: "billing", color: "#4FB4A8" },
+          { x: 150, y: 165, label: "records", color: "#4FB4A8" },
+          { x: 250, y: 110, label: "invoice", color: "#E8C468" }
+        ],
+        edges: [[0, 1, "#E8C468"], [0, 2, "#4FB4A8"], [1, 3, "#E8C468"], [2, 3, "#4FB4A8"]],
+        caption: "customer → billing → records → invoice", live: "", video: ""
+      },
+      {
+        id: "oceanvisualizer",
+        name: "3D Ocean Data Visualizer",
+        tag: "interactive scientific visualization",
+        desc: "An interactive 3D visualization project for exploring ocean-related data in a spatial format, with a focus on making complex data easier to inspect and understand visually.",
+        stack: ["3D visualization", "data visualization", "interactive graphics"],
+        nodes: [
+          { x: 55, y: 110, label: "ocean\ndata", color: "#E8C468" },
+          { x: 150, y: 55, label: "process", color: "#4FB4A8" },
+          { x: 150, y: 165, label: "spatial\nmodel", color: "#4FB4A8" },
+          { x: 250, y: 110, label: "3D\nview", color: "#E8C468" }
+        ],
+        edges: [[0, 1, "#E8C468"], [0, 2, "#4FB4A8"], [1, 3, "#E8C468"], [2, 3, "#4FB4A8"]],
+        caption: "data → spatial model → interactive 3D view", live: "", video: ""
+      },
+      {
+        id: "offloading",
+        name: "Distributed Computation Offloading System",
+        tag: "distributed systems project",
+        desc: "A distributed-systems project exploring computation offloading — deciding when work should be processed locally or delegated to another computing resource to improve how workloads are handled.",
+        stack: ["distributed computing", "computation offloading", "workload management"],
+        nodes: [
+          { x: 55, y: 110, label: "local\nworkload", color: "#E8C468" },
+          { x: 150, y: 55, label: "decision", color: "#4FB4A8" },
+          { x: 150, y: 165, label: "remote\ncompute", color: "#4FB4A8" },
+          { x: 250, y: 110, label: "result", color: "#E8C468" }
+        ],
+        edges: [[0, 1, "#E8C468"], [1, 2, "#4FB4A8"], [2, 3, "#E8C468"]],
+        caption: "workload → offloading decision → computation → result", live: "", video: ""
+      },
+      {
+        id: "coldguard",
+        name: "Cold Guard",
+        tag: "hackathon project · cold-chain transport",
+        desc: "A hackathon-built cold-chain transport solution for medical equipment. Cold Guard combines a physical transport box with temperature monitoring, a mechanism for managing temperature conditions, and a dashboard for observing the box during transport.",
+        stack: ["hardware prototype", "temperature monitoring", "dashboard", "cold chain"],
+        nodes: [
+          { x: 55, y: 110, label: "cold-chain\nbox", color: "#E8C468" },
+          { x: 150, y: 55, label: "temperature\ncontrol", color: "#4FB4A8" },
+          { x: 150, y: 165, label: "monitoring", color: "#4FB4A8" },
+          { x: 250, y: 110, label: "dashboard", color: "#E8C468" }
+        ],
+        edges: [[0, 1, "#E8C468"], [0, 2, "#4FB4A8"], [1, 3, "#E8C468"], [2, 3, "#4FB4A8"]],
+        caption: "transport box → temperature → monitoring → dashboard", live: "", video: ""
+      },
+      {
+        id: "upcoming-hackathon",
+        name: "Upcoming Hackathon Project",
+        tag: "in planning",
+        desc: "A new hackathon project currently being planned. This entry is intentionally marked as upcoming until the project is built and its final problem statement, solution, and technology stack are confirmed.",
+        stack: ["planning", "rapid prototyping", "team development"],
+        nodes: [
+          { x: 55, y: 110, label: "problem", color: "#E8C468" },
+          { x: 150, y: 55, label: "idea", color: "#4FB4A8" },
+          { x: 150, y: 165, label: "prototype", color: "#4FB4A8" },
+          { x: 250, y: 110, label: "build", color: "#E8C468" }
+        ],
+        edges: [[0, 1, "#E8C468"], [1, 2, "#4FB4A8"], [2, 3, "#E8C468"]],
+        caption: "problem → idea → prototype → build", live: "", video: ""
       }
     ];
 
