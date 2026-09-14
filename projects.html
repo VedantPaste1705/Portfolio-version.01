@@ -1,189 +1,773 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects — Alex Rao</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&family=Permanent+Marker&display=swap" rel="stylesheet">
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Alex Rao</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&family=Permanent+Marker&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #14181D;
+      --panel: #1B2128;
+      --line: #2B333C;
+      --text: #EEF1F0;
+      --muted: #AAB3B1;
+      --dim: #727D7B;
+      --amber: #D3A45C;
+      --teal: #56B6AD;
+      --focus: #86B7FF;
+    }
 
-:root{--bg:#14181D;--panel:#1B2128;--line:#2B333C;--text:#EEF1F0;--muted:#AAB3B1;--dim:#727D7B;--amber:#D3A45C;--teal:#56B6AD;--focus:#86B7FF;}
-*{box-sizing:border-box;margin:0;padding:0;}
-html{min-height:100%;scroll-behavior:smooth;scroll-padding-top:64px;}
-body{min-height:100vh;margin:0;background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;overflow-x:hidden;}
-.frame{position:relative;min-height:100vh;width:100%;background:var(--bg);overflow:visible;}
-.frame::before{content:"";position:fixed;inset:64px 0 0;background:url("assets/neuron-light.png") center/540px auto repeat;opacity:0;pointer-events:none;z-index:0;}
-body.light{--bg:#D8DDDF;--panel:#EEF1F1;--line:#91A3A6;--text:#172229;--muted:#506168;--dim:#718085;--amber:#A85C27;--teal:#176F70;--focus:#315F9E;}
-body.light .frame{background:linear-gradient(135deg,#D8DDDF 0%,#E1E5E6 48%,#D4DBDD 100%);}
-body.light .frame::before{opacity:.075;}
-nav{position:fixed;top:0;left:0;right:0;width:100%;height:64px;min-height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:var(--bg);border-bottom:1px solid var(--line);z-index:10000;box-shadow:0 5px 20px rgba(0,0,0,.10);}
-.logo{font-family:'Permanent Marker',cursive;font-size:20px;white-space:nowrap;flex:0 0 auto;}.logo span{color:var(--amber);}
-.nav-links{display:flex;align-items:center;gap:20px;list-style:none;}.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;}.nav-links li.active a,.nav-links a:hover{color:var(--text);}.nav-links li.active{position:relative;}.nav-links li.active::after{content:"";position:absolute;left:0;right:0;bottom:-21px;height:1px;background:var(--amber);}
-.nav-icons{display:flex;align-items:center;gap:8px;flex:0 0 auto;}.social,.theme-toggle,.menu-toggle{width:38px;height:38px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--muted);display:flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer;}.social svg{width:15px;height:15px;fill:currentColor;}.theme-toggle,.menu-toggle{font-family:inherit;font-size:16px;}.menu-toggle{display:none;}.social:hover,.theme-toggle:hover,.menu-toggle:hover{border-color:var(--amber);color:var(--amber);}
-.nav-links.open{position:fixed;top:64px;left:12px;right:12px;display:flex;z-index:11000;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;box-shadow:0 20px 55px rgba(0,0,0,.25);}
-body.light nav{background:#D8DDDF;border-bottom-color:#8FA1A4;}.social,.theme-toggle,.menu-toggle{background:var(--panel);}
-footer{position:relative;z-index:1;min-height:56px;height:56px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:var(--bg);}.dots{display:flex;gap:7px;align-items:center;}.dot{width:6px;height:6px;border-radius:50%;background:var(--line);}.dot.on{width:16px;border-radius:3px;background:var(--amber);}footer .cta{font-size:12px;color:var(--muted);text-decoration:none;}footer .cta:hover{color:var(--text);}
-@media(max-width:950px){nav{padding:0 18px;}.nav-links{display:none;}.menu-toggle{display:flex;}.nav-links.open{display:flex;flex-direction:column;gap:0;}.nav-links.open li a{display:block;padding:13px 12px;font-size:12px;}.nav-links.open li.active::after{display:none;}.social{display:flex;}footer{height:auto;min-height:58px;padding:16px 18px;}}
-@media(max-width:700px){nav{padding:0 14px;}.social{display:none;}.logo{font-size:18px;}footer{min-height:60px;}.frame::before{inset:64px 0 0;}}
-@media(max-width:430px){nav{padding:0 12px;}.logo{font-size:17px;}.theme-toggle,.menu-toggle{width:36px;height:36px;}}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-main{position:relative;z-index:1;margin-top:64px;min-height:calc(100vh - 120px);display:grid;grid-template-columns:220px minmax(0,1fr) minmax(0,1fr);align-items:stretch;}
-.list{position:relative;z-index:1;border-right:1px solid var(--line);padding:24px 0;overflow:auto;background:transparent;}.list-item{padding:14px 22px;cursor:pointer;border-left:2px solid transparent;}.list-item:hover{background:rgba(255,255,255,.025);}.list-item.active{border-left-color:var(--amber);background:var(--panel);}.li-name{font-size:12.5px;color:var(--muted);}.li-tag{font-size:10px;color:var(--dim);margin-top:4px;}.list-item.active .li-name{color:var(--text);}
-.info{position:relative;z-index:1;padding:38px 34px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:flex-start;overflow:visible;min-width:0;}.p-eyebrow{color:var(--dim);font-size:11px;letter-spacing:.05em;}.p-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:23px;margin-top:8px;}.p-desc{color:var(--muted);font-size:12.5px;line-height:1.7;margin-top:14px;}.p-stack{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px;}.p-stack span{border:1px solid var(--line);border-radius:5px;padding:5px 9px;font-size:10.5px;color:var(--muted);}.project-mark{font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--teal);margin-top:18px;}.project-media{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden;margin-top:10px;}.project-media img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;}.media-note{padding:8px 11px;border-top:1px solid var(--line);font-size:9px;color:var(--dim);}.project-demo{display:inline-flex;align-items:center;margin-top:16px;padding:9px 12px;border:1px solid var(--amber);border-radius:6px;color:var(--amber);text-decoration:none;font-size:10.5px;}.project-demo.disabled{border-color:var(--line);color:var(--dim);cursor:default;}
-.graph{position:relative;z-index:1;padding:34px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;}.g-label{align-self:flex-start;font-size:11px;color:var(--dim);margin-bottom:6px;}.graph svg{max-width:100%;height:auto;}.g-cap{font-size:11px;color:var(--dim);margin-top:10px;}
-body.light .list-item.active,body.light .project-media{background:#EEF1F1;}body.light .p-stack span,body.light .project-media{border-color:#91A3A6;}
-@media(max-width:900px){main{grid-template-columns:190px minmax(0,1fr);}.graph{display:none;}.info{border-right:0;}}
-@media(max-width:700px){
-  main{display:flex;flex-direction:column;min-height:0;margin-top:64px;}
-  .list{order:1;width:100%;border-right:0;border-bottom:1px solid var(--line);padding:10px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;overflow:visible;background:transparent;}
-  .list-item{min-width:0;width:100%;min-height:74px;padding:12px;border:1px solid var(--line);border-left:2px solid transparent;border-radius:9px;display:flex;flex-direction:column;justify-content:center;background:transparent;}
-  .list-item.active{border-left-color:var(--amber);border-bottom-color:var(--amber);background:var(--panel);}
-  .info{order:2;width:100%;padding:30px 18px 34px;border-right:0;border-bottom:1px solid var(--line);display:block;}
-  .p-title{font-size:24px;}.p-desc{font-size:12.5px;}.project-media{width:100%;}.graph{order:3;display:flex;width:100%;min-height:260px;padding:28px 18px 38px;border:0;border-bottom:1px solid var(--line);}
-  footer{order:4;}
-}
-@media(max-width:390px){.list{grid-template-columns:1fr;}.list-item{min-height:66px;}}
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+      scroll-padding-top: 64px;
+    }
 
-</style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      overflow-x: hidden;
+    }
+
+    .frame {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      background: var(--bg);
+      overflow: visible;
+    }
+
+    .frame::before {
+      content: "";
+      position: fixed;
+      inset: 64px 0 0;
+      background: url("assets/neuron-light.png") center/540px auto repeat;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body.light {
+      --bg: #D8DDDF;
+      --panel: #EEF1F1;
+      --line: #91A3A6;
+      --text: #172229;
+      --muted: #506168;
+      --dim: #718085;
+      --amber: #A85C27;
+      --teal: #176F70;
+      --focus: #315F9E;
+    }
+
+    body.light .frame {
+      background: linear-gradient(135deg, #D8DDDF 0%, #E1E5E6 48%, #D4DBDD 100%);
+    }
+
+    body.light .frame::before {
+      opacity: .075;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 64px;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      z-index: 10000;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, .10);
+    }
+
+    .logo {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 20px;
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
+
+    .logo span {
+      color: var(--amber);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .nav-links li.active a,
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links li.active {
+      position: relative;
+    }
+
+    .nav-links li.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -21px;
+      height: 1px;
+      background: var(--amber);
+    }
+
+    .nav-icons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    .social,
+    .theme-toggle,
+    .menu-toggle {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--panel);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .social svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    .theme-toggle,
+    .menu-toggle {
+      font-family: inherit;
+      font-size: 16px;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .social:hover,
+    .theme-toggle:hover,
+    .menu-toggle:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .nav-links.open {
+      position: fixed;
+      top: 64px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      z-index: 11000;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 20px 55px rgba(0, 0, 0, .25);
+    }
+
+    body.light nav {
+      background: #D8DDDF;
+      border-bottom-color: #8FA1A4;
+    }
+
+    .social,
+    .theme-toggle,
+    .menu-toggle {
+      background: var(--panel);
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      min-height: 56px;
+      height: 56px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      background: var(--bg);
+    }
+
+    .dots {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--line);
+    }
+
+    .dot.on {
+      width: 16px;
+      border-radius: 3px;
+      background: var(--amber);
+    }
+
+    footer .cta {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    footer .cta:hover {
+      color: var(--text);
+    }
+
+    @media(max-width:950px) {
+      nav {
+        padding: 0 18px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .nav-links.open li a {
+        display: block;
+        padding: 13px 12px;
+        font-size: 12px;
+      }
+
+      .nav-links.open li.active::after {
+        display: none;
+      }
+
+      .social {
+        display: flex;
+      }
+
+      footer {
+        height: auto;
+        min-height: 58px;
+        padding: 16px 18px;
+      }
+    }
+
+    @media(max-width:700px) {
+      nav {
+        padding: 0 14px;
+      }
+
+      .social {
+        display: none;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      footer {
+        min-height: 60px;
+      }
+
+      .frame::before {
+        inset: 64px 0 0;
+      }
+    }
+
+    @media(max-width:430px) {
+      nav {
+        padding: 0 12px;
+      }
+
+      .logo {
+        font-size: 17px;
+      }
+
+      .theme-toggle,
+      .menu-toggle {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      margin-top: 64px;
+      min-height: calc(100vh - 120px);
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr) minmax(0, 1fr);
+      align-items: stretch;
+    }
+
+    .list {
+      position: relative;
+      z-index: 1;
+      border-right: 1px solid var(--line);
+      padding: 24px 0;
+      overflow: auto;
+      background: transparent;
+    }
+
+    .list-item {
+      padding: 14px 22px;
+      cursor: pointer;
+      border-left: 2px solid transparent;
+    }
+
+    .list-item:hover {
+      background: rgba(255, 255, 255, .025);
+    }
+
+    .list-item.active {
+      border-left-color: var(--amber);
+      background: var(--panel);
+    }
+
+    .li-name {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .li-tag {
+      font-size: 10px;
+      color: var(--dim);
+      margin-top: 4px;
+    }
+
+    .list-item.active .li-name {
+      color: var(--text);
+    }
+
+    .info {
+      position: relative;
+      z-index: 1;
+      padding: 38px 34px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: visible;
+      min-width: 0;
+    }
+
+    .p-eyebrow {
+      color: var(--dim);
+      font-size: 11px;
+      letter-spacing: .05em;
+    }
+
+    .p-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 23px;
+      margin-top: 8px;
+    }
+
+    .p-desc {
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.7;
+      margin-top: 14px;
+    }
+
+    .p-stack {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .p-stack span {
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 5px 9px;
+      font-size: 10.5px;
+      color: var(--muted);
+    }
+
+    .project-mark {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      color: var(--teal);
+      margin-top: 18px;
+    }
+
+    .project-media {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .project-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    .media-note {
+      padding: 8px 11px;
+      border-top: 1px solid var(--line);
+      font-size: 9px;
+      color: var(--dim);
+    }
+
+    .project-demo {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 16px;
+      padding: 9px 12px;
+      border: 1px solid var(--amber);
+      border-radius: 6px;
+      color: var(--amber);
+      text-decoration: none;
+      font-size: 10.5px;
+    }
+
+    .project-demo.disabled {
+      border-color: var(--line);
+      color: var(--dim);
+      cursor: default;
+    }
+
+    .graph {
+      position: relative;
+      z-index: 1;
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .g-label {
+      align-self: flex-start;
+      font-size: 11px;
+      color: var(--dim);
+      margin-bottom: 6px;
+    }
+
+    .graph svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .g-cap {
+      font-size: 11px;
+      color: var(--dim);
+      margin-top: 10px;
+    }
+
+    body.light .list-item.active,
+    body.light .project-media {
+      background: #EEF1F1;
+    }
+
+    body.light .p-stack span,
+    body.light .project-media {
+      border-color: #91A3A6;
+    }
+
+    @media(max-width:900px) {
+      main {
+        grid-template-columns: 190px minmax(0, 1fr);
+      }
+
+      .graph {
+        display: none;
+      }
+
+      .info {
+        border-right: 0;
+      }
+    }
+
+    @media(max-width:700px) {
+      main {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        margin-top: 64px;
+      }
+
+      .list {
+        order: 1;
+        width: 100%;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        padding: 10px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        overflow: visible;
+        background: transparent;
+      }
+
+      .list-item {
+        min-width: 0;
+        width: 100%;
+        min-height: 74px;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-left: 2px solid transparent;
+        border-radius: 9px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: transparent;
+      }
+
+      .list-item.active {
+        border-left-color: var(--amber);
+        border-bottom-color: var(--amber);
+        background: var(--panel);
+      }
+
+      .info {
+        order: 2;
+        width: 100%;
+        padding: 30px 18px 34px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        display: block;
+      }
+
+      .p-title {
+        font-size: 24px;
+      }
+
+      .p-desc {
+        font-size: 12.5px;
+      }
+
+      .project-media {
+        width: 100%;
+      }
+
+      .graph {
+        order: 3;
+        display: flex;
+        width: 100%;
+        min-height: 260px;
+        padding: 28px 18px 38px;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      footer {
+        order: 4;
+      }
+    }
+
+    @media(max-width:390px) {
+      .list {
+        grid-template-columns: 1fr;
+      }
+
+      .list-item {
+        min-height: 66px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="frame">
-  <nav>
-    <div class="logo">alex<span>.</span>rao</div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">home</a></li>
-      <li><a href="about.html">about</a></li>
-      <li><a href="skills.html">skills</a></li>
-      <li class="active"><a href="projects.html">projects</a></li>
-      <li><a href="certifications.html">certifications</a></li>
-      <li><a href="contact.html">contact</a></li>
-    </ul>
-    <div class="nav-icons"><a class="social" href="https://github.com/alexrao-dev" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .7A11.3 11.3 0 0 0 8.4 22.8c.57.1.78-.25.78-.55v-2.15c-3.18.69-3.85-1.35-3.85-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.74.4-1.25.73-1.54-2.54-.29-5.2-1.27-5.2-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.12 1.17a10.8 10.8 0 0 1 5.68 0c2.16-1.48 3.12-1.17 3.12-1.17.62 1.57.23 2.73.11 3.02.73.8 1.18 1.82 1.18 3.07 0 4.4-2.67 5.36-5.22 5.65.41.35.78 1.04.78 2.1v3.11c0 .3.2.66.79.55A11.3 11.3 0 0 0 12 .7Z"/></svg></a><a class="social" href="https://linkedin.com/in/alexrao-dev" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M5.2 3.6A2.6 2.6 0 1 1 0 3.6a2.6 2.6 0 0 1 5.2 0ZM.3 21.9h4.9V7H.3v14.9ZM8.2 7h4.7v2h.1c.65-1.2 2.25-2.45 4.63-2.45 4.95 0 5.87 3.26 5.87 7.5v7.85h-4.9v-6.96c0-1.66-.03-3.8-2.32-3.8-2.32 0-2.67 1.81-2.67 3.68v7.08H8.7V7h-.5Z"/></svg></a><button class="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode">☼</button><button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button></div>
-  </nav>
-  <main>
-    <div class="list" id="proj-list"></div>
-    <div class="info" id="proj-info"></div>
-    <div class="graph" id="proj-graph"></div>
-  </main>
-  <footer>
-    <div class="dots">
-      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-      <span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-    </div>
-    <a class="cta" href="certifications.html">certifications &rarr;</a>
-  </footer>
-</div>
+  <div class="frame">
+    <nav>
+      <div class="logo">Vedant<span>.</span>Paste</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">home</a></li>
+        <li><a href="about.html">about</a></li>
+        <li><a href="skills.html">skills</a></li>
+        <li class="active"><a href="projects.html">projects</a></li>
+        <li><a href="certifications.html">certifications</a></li>
+        <li><a href="contact.html">contact</a></li>
+      </ul>
+      <div class="nav-icons"><a class="social" href="https://github.com/VedantPaste1705" title="GitHub"
+          aria-label="GitHub"><svg viewBox="0 0 24 24">
+            <path
+              d="M12 .7A11.3 11.3 0 0 0 8.4 22.8c.57.1.78-.25.78-.55v-2.15c-3.18.69-3.85-1.35-3.85-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.74.4-1.25.73-1.54-2.54-.29-5.2-1.27-5.2-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.12 1.17a10.8 10.8 0 0 1 5.68 0c2.16-1.48 3.12-1.17 3.12-1.17.62 1.57.23 2.73.11 3.02.73.8 1.18 1.82 1.18 3.07 0 4.4-2.67 5.36-5.22 5.65.41.35.78 1.04.78 2.1v3.11c0 .3.2.66.79.55A11.3 11.3 0 0 0 12 .7Z" />
+          </svg></a><a class="social" href="https://linkedin.com/in/vedant-paste-100a85436" title="LinkedIn"
+          aria-label="LinkedIn"><svg viewBox="0 0 24 24">
+            <path
+              d="M5.2 3.6A2.6 2.6 0 1 1 0 3.6a2.6 2.6 0 0 1 5.2 0ZM.3 21.9h4.9V7H.3v14.9ZM8.2 7h4.7v2h.1c.65-1.2 2.25-2.45 4.63-2.45 4.95 0 5.87 3.26 5.87 7.5v7.85h-4.9v-6.96c0-1.66-.03-3.8-2.32-3.8-2.32 0-2.67 1.81-2.67 3.68v7.08H8.7V7h-.5Z" />
+          </svg></a><button class="theme-toggle" onclick="toggleTheme()"
+          title="Toggle light/dark mode">☼</button><button class="menu-toggle" onclick="toggleMenu()"
+          aria-label="Menu">☰</button></div>
+    </nav>
+    <main>
+      <div class="list" id="proj-list"></div>
+      <div class="info" id="proj-info"></div>
+      <div class="graph" id="proj-graph"></div>
+    </main>
+    <footer>
+      <div class="dots">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <a class="cta" href="certifications.html">certifications &rarr;</a>
+    </footer>
+  </div>
 
-<script>
-var projects = [
-  {
-    id: "sentrychain",
-    name: "SentryChain",
-    tag: "smart contract auditor",
-    desc: "An AI-powered smart contract security auditor built on a multi-agent LangGraph architecture. Top portfolio priority, aimed at filling a gap in blockchain and distributed-systems work. Roadmapped as a 6-8 week MVP build.",
-    stack: ["langgraph", "python", "solidity parsing", "multi-agent"],
-    nodes: [
-      {x:60, y:70, label:"contract\nparser", color:"#E8C468"},
-      {x:150, y:120, label:"vulnerability\nscanner", color:"#4FB4A8"},
-      {x:240, y:70, label:"risk\nreport", color:"#E8C468"}
-    ],
-    edges: [[0,1,"#E8C468"],[1,2,"#4FB4A8"]],
-    caption: "3-node LangGraph audit pipeline", live: "", video: ""
-  },
-  {
-    id: "ecorx",
-    name: "EcoRx",
-    tag: "surplus redistribution agent",
-    desc: "A LangGraph agent that routes surplus goods to where they're needed. Vision agent reads the input, Compliance agent checks it against rules, Matching agent finds the right recipient. Built as a strict milestone-by-milestone engagement.",
-    stack: ["langgraph", "python", "multi-agent"],
-    nodes: [
-      {x:60, y:70, label:"vision", color:"#E8C468"},
-      {x:150, y:120, label:"compliance", color:"#4FB4A8"},
-      {x:240, y:70, label:"matching", color:"#E8C468"}
-    ],
-    edges: [[0,1,"#E8C468"],[1,2,"#4FB4A8"]],
-    caption: "3-node LangGraph architecture", live: "", video: ""
-  },
-  {
-    id: "medisphere",
-    name: "MediSphere AI",
-    tag: "agentic health navigator",
-    desc: "An Agentic AI Personal Health Navigator, built under a 3-day deadline. Concept note specifies a 7-agent architecture; working scope covers a Supervisor routing between a Report Parser agent and a Medical Management agent.",
-    stack: ["langgraph", "langchain", "streamlit", "gemini / groq apis"],
-    nodes: [
-      {x:150, y:50, label:"supervisor", color:"#E8C468"},
-      {x:80, y:130, label:"report\nparser", color:"#4FB4A8"},
-      {x:220, y:130, label:"medical\nmgmt", color:"#4FB4A8"}
-    ],
-    edges: [[0,1,"#4FB4A8"],[0,2,"#4FB4A8"]],
-    caption: "supervisor + 2-agent architecture", live: "", video: ""
-  },
-  {
-    id: "clearspace",
-    name: "ClearSpace AI",
-    tag: "local-first storage manager",
-    desc: "A privacy-first Windows storage manager, GPLv3 and free/open-source. Scans for files unused 2-12 months, detects duplicates, and auto-tracks Downloads for cleanup — all processing on-device, nothing sent to the cloud.",
-    stack: ["python", "local ai", "duplicate hashing", "gplv3"],
-    nodes: [
-      {x:50, y:100, label:"scan", color:"#E8C468"},
-      {x:150, y:60, label:"detect\nduplicates", color:"#4FB4A8"},
-      {x:150, y:140, label:"quarantine", color:"#4FB4A8"},
-      {x:250, y:100, label:"auto-delete\n(confirmed)", color:"#E8C468"}
-    ],
-    edges: [[0,1,"#E8C468"],[0,2,"#E8C468"],[1,3,"#4FB4A8"],[2,3,"#4FB4A8"]],
-    caption: "on-device cleanup flow", live: "", video: ""
-  }
-];
+  <script>
+    var projects = [
+      {
+        id: "sentrychain",
+        name: "SentryChain",
+        tag: "smart contract auditor",
+        desc: "An AI-powered smart contract security auditor built on a multi-agent LangGraph architecture. Top portfolio priority, aimed at filling a gap in blockchain and distributed-systems work. Roadmapped as a 6-8 week MVP build.",
+        stack: ["langgraph", "python", "solidity parsing", "multi-agent"],
+        nodes: [
+          { x: 60, y: 70, label: "contract\nparser", color: "#E8C468" },
+          { x: 150, y: 120, label: "vulnerability\nscanner", color: "#4FB4A8" },
+          { x: 240, y: 70, label: "risk\nreport", color: "#E8C468" }
+        ],
+        edges: [[0, 1, "#E8C468"], [1, 2, "#4FB4A8"]],
+        caption: "3-node LangGraph audit pipeline", live: "", video: ""
+      },
+      {
+        id: "ecorx",
+        name: "EcoRx",
+        tag: "surplus redistribution agent",
+        desc: "A LangGraph agent that routes surplus goods to where they're needed. Vision agent reads the input, Compliance agent checks it against rules, Matching agent finds the right recipient. Built as a strict milestone-by-milestone engagement.",
+        stack: ["langgraph", "python", "multi-agent"],
+        nodes: [
+          { x: 60, y: 70, label: "vision", color: "#E8C468" },
+          { x: 150, y: 120, label: "compliance", color: "#4FB4A8" },
+          { x: 240, y: 70, label: "matching", color: "#E8C468" }
+        ],
+        edges: [[0, 1, "#E8C468"], [1, 2, "#4FB4A8"]],
+        caption: "3-node LangGraph architecture", live: "", video: ""
+      },
+      {
+        id: "medisphere",
+        name: "MediSphere AI",
+        tag: "agentic health navigator",
+        desc: "An Agentic AI Personal Health Navigator, built under a 3-day deadline. Concept note specifies a 7-agent architecture; working scope covers a Supervisor routing between a Report Parser agent and a Medical Management agent.",
+        stack: ["langgraph", "langchain", "streamlit", "gemini / groq apis"],
+        nodes: [
+          { x: 150, y: 50, label: "supervisor", color: "#E8C468" },
+          { x: 80, y: 130, label: "report\nparser", color: "#4FB4A8" },
+          { x: 220, y: 130, label: "medical\nmgmt", color: "#4FB4A8" }
+        ],
+        edges: [[0, 1, "#4FB4A8"], [0, 2, "#4FB4A8"]],
+        caption: "supervisor + 2-agent architecture", live: "", video: ""
+      },
+      {
+        id: "clearspace",
+        name: "ClearSpace AI",
+        tag: "local-first storage manager",
+        desc: "A privacy-first Windows storage manager, GPLv3 and free/open-source. Scans for files unused 2-12 months, detects duplicates, and auto-tracks Downloads for cleanup — all processing on-device, nothing sent to the cloud.",
+        stack: ["python", "local ai", "duplicate hashing", "gplv3"],
+        nodes: [
+          { x: 50, y: 100, label: "scan", color: "#E8C468" },
+          { x: 150, y: 60, label: "detect\nduplicates", color: "#4FB4A8" },
+          { x: 150, y: 140, label: "quarantine", color: "#4FB4A8" },
+          { x: 250, y: 100, label: "auto-delete\n(confirmed)", color: "#E8C468" }
+        ],
+        edges: [[0, 1, "#E8C468"], [0, 2, "#E8C468"], [1, 3, "#4FB4A8"], [2, 3, "#4FB4A8"]],
+        caption: "on-device cleanup flow", live: "", video: ""
+      }
+    ];
 
-var current = 0;
+    var current = 0;
 
-function renderList(){
-  var el = document.getElementById("proj-list");
-  el.innerHTML = "";
-  projects.forEach(function(p, i){
-    var d = document.createElement("div");
-    d.className = "list-item" + (i === current ? " active" : "");
-    d.innerHTML = "<div class='li-name'>" + p.name + "</div><div class='li-tag'>" + p.tag + "</div>";
-    d.onclick = function(){ current = i; renderList(); renderDetail(); };
-    el.appendChild(d);
-  });
-}
+    function renderList() {
+      var el = document.getElementById("proj-list");
+      el.innerHTML = "";
+      projects.forEach(function (p, i) {
+        var d = document.createElement("div");
+        d.className = "list-item" + (i === current ? " active" : "");
+        d.innerHTML = "<div class='li-name'>" + p.name + "</div><div class='li-tag'>" + p.tag + "</div>";
+        d.onclick = function () { current = i; renderList(); renderDetail(); };
+        el.appendChild(d);
+      });
+    }
 
-function renderDetail(){
-  var p = projects[current];
-  var info = document.getElementById("proj-info");
-  var stackHtml = p.stack.map(function(s){ return "<span>" + s + "</span>"; }).join("");
-  info.innerHTML =
-    "<div class='p-eyebrow'>// " + p.tag + "</div>" +
-    "<div class='p-title'>" + p.name + "</div>" +
-    "<div class='p-desc'>" + p.desc + "</div>" +
-    "<div class='p-stack'>" + stackHtml + "</div>" +
-    "<div class='project-mark'>// project visual</div>" +
-    "<div class='project-media'><img src='assets/projects/" + p.id + ".svg' alt='" + p.name + " project mark'><div class='media-note'>Replace this project mark with a real product screenshot or project logo when available.</div></div>" +
-    (p.live ? "<a class='project-demo' href='" + p.live + "' target='_blank' rel='noopener'>view live demo ↗</a>" : (p.video ? "<a class='project-demo' href='" + p.video + "' target='_blank' rel='noopener'>watch workflow ↗</a>" : "<span class='project-demo disabled'>demo link — add deployment or YouTube URL</span>"));
+    function renderDetail() {
+      var p = projects[current];
+      var info = document.getElementById("proj-info");
+      var stackHtml = p.stack.map(function (s) { return "<span>" + s + "</span>"; }).join("");
+      info.innerHTML =
+        "<div class='p-eyebrow'>// " + p.tag + "</div>" +
+        "<div class='p-title'>" + p.name + "</div>" +
+        "<div class='p-desc'>" + p.desc + "</div>" +
+        "<div class='p-stack'>" + stackHtml + "</div>" +
+        "<div class='project-mark'>// project visual</div>" +
+        "<div class='project-media'><img src='assets/projects/" + p.id + ".svg' alt='" + p.name + " project mark'><div class='media-note'>Replace this project mark with a real product screenshot or project logo when available.</div></div>" +
+        (p.live ? "<a class='project-demo' href='" + p.live + "' target='_blank' rel='noopener'>view live demo ↗</a>" : (p.video ? "<a class='project-demo' href='" + p.video + "' target='_blank' rel='noopener'>watch workflow ↗</a>" : "<span class='project-demo disabled'>demo link — add deployment or YouTube URL</span>"));
 
-  var graph = document.getElementById("proj-graph");
-  var svgParts = "";
-  p.edges.forEach(function(e){
-    var a = p.nodes[e[0]], b = p.nodes[e[1]];
-    svgParts += "<line x1='" + a.x + "' y1='" + a.y + "' x2='" + b.x + "' y2='" + b.y + "' stroke='" + e[2] + "' stroke-width='1'/>";
-  });
-  p.nodes.forEach(function(n){
-    svgParts += "<circle cx='" + n.x + "' cy='" + n.y + "' r='5' fill='" + n.color + "'/>";
-    var lines = n.label.split("\n");
-    lines.forEach(function(line, li){
-      svgParts += "<text x='" + n.x + "' y='" + (n.y - 14 - (lines.length - 1 - li) * 12) + "' fill='#9A9D96' font-size='10.5' text-anchor='middle' font-family='JetBrains Mono'>" + line + "</text>";
-    });
-  });
-  graph.innerHTML =
-    "<div class='g-label'>// architecture</div>" +
-    "<svg width='280' height='190' viewBox='0 0 280 190'>" + svgParts + "</svg>" +
-    "<div class='g-cap'>" + p.caption + "</div>";
-}
+      var graph = document.getElementById("proj-graph");
+      var svgParts = "";
+      p.edges.forEach(function (e) {
+        var a = p.nodes[e[0]], b = p.nodes[e[1]];
+        svgParts += "<line x1='" + a.x + "' y1='" + a.y + "' x2='" + b.x + "' y2='" + b.y + "' stroke='" + e[2] + "' stroke-width='1'/>";
+      });
+      p.nodes.forEach(function (n) {
+        svgParts += "<circle cx='" + n.x + "' cy='" + n.y + "' r='5' fill='" + n.color + "'/>";
+        var lines = n.label.split("\n");
+        lines.forEach(function (line, li) {
+          svgParts += "<text x='" + n.x + "' y='" + (n.y - 14 - (lines.length - 1 - li) * 12) + "' fill='#9A9D96' font-size='10.5' text-anchor='middle' font-family='JetBrains Mono'>" + line + "</text>";
+        });
+      });
+      graph.innerHTML =
+        "<div class='g-label'>// architecture</div>" +
+        "<svg width='280' height='190' viewBox='0 0 280 190'>" + svgParts + "</svg>" +
+        "<div class='g-cap'>" + p.caption + "</div>";
+    }
 
-renderList();
-renderDetail();
-</script>
-<script>function toggleTheme(){document.body.classList.toggle('light');localStorage.setItem('portfolio-theme',document.body.classList.contains('light')?'light':'dark')}function toggleMenu(){document.getElementById('navLinks').classList.toggle('open')}if(localStorage.getItem('portfolio-theme')==='light')document.body.classList.add('light');</script></body>
+    renderList();
+    renderDetail();
+  </script>
+  <script>function toggleTheme() { document.body.classList.toggle('light'); localStorage.setItem('portfolio-theme', document.body.classList.contains('light') ? 'light' : 'dark') } function toggleMenu() { document.getElementById('navLinks').classList.toggle('open') } if (localStorage.getItem('portfolio-theme') === 'light') document.body.classList.add('light');</script>
+</body>
+
 </html>
