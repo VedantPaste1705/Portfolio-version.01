@@ -622,15 +622,17 @@
         </div>
       </div>
       <div class="col-right">
-        <form onsubmit="sendMessage(event)">
-          <div class="field"><label>name</label><input id="name" type="text" placeholder="your name"></div>
-          <div class="field"><label>email</label><input id="email" type="email" placeholder="your email"></div>
-          <div class="field"><label>message</label><textarea id="message" placeholder="what's on your mind"></textarea>
+        <form id="contactForm" onsubmit="sendMessage(event)">
+          <div class="field"><label for="name">name</label><input id="name" name="name" type="text" placeholder="your name" autocomplete="name" required maxlength="100"></div>
+          <div class="field"><label for="email">email</label><input id="email" name="email" type="email" placeholder="your email" autocomplete="email" required maxlength="254"></div>
+          <div class="field"><label for="message">message</label><textarea id="message" name="message" placeholder="what's on your mind" required maxlength="5000"></textarea>
           </div>
-          <button class="submit" type="submit">send_message()</button>
+        <div class="field" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;">
+            <label for="website">website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <button class="submit" id="submitButton" type="submit">send_message()</button>
         </form>
-        <div class="form-note">The static site opens your email client with the message prepared; no backend is claimed.
-        </div>
+        <div class="form-note" id="formStatus" role="status" aria-live="polite">Messages are sent directly to vedantpaste17@gmail.com.</div>
       </div>
     </main>
     <footer>
@@ -642,7 +644,46 @@
     </footer>
   </div>
   <script>function toggleTheme() { document.body.classList.toggle('light'); localStorage.setItem('portfolio-theme', document.body.classList.contains('light') ? 'light' : 'dark') } function toggleMenu() { document.getElementById('navLinks').classList.toggle('open') } if (localStorage.getItem('portfolio-theme') === 'light') document.body.classList.add('light');</script>
-  <script>function sendMessage(e) { e.preventDefault(); var n = document.getElementById('name').value, e2 = document.getElementById('email').value, m = document.getElementById('message').value; location.href = 'mailto:alex.rao.dev@gmail.com?subject=' + encodeURIComponent('Portfolio contact from ' + n) + '&body=' + encodeURIComponent(m + '\n\nReply to: ' + e2) }</script>
+  <script>
+    async function sendMessage(e) {
+      e.preventDefault();
+      var form = document.getElementById('contactForm');
+      var button = document.getElementById('submitButton');
+      var status = document.getElementById('formStatus');
+      var data = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        message: document.getElementById('message').value.trim(),
+        website: document.getElementById('website').value.trim()
+      };
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = 'sending...';
+      status.textContent = 'Sending message...';
+
+      try {
+        var response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        var result = await response.json();
+        if (!response.ok || !result.success) throw new Error(result.message || 'Unable to send message.');
+        form.reset();
+        status.textContent = 'Message sent successfully. Thank you for reaching out!';
+      } catch (error) {
+        status.textContent = error.message || 'Unable to send the message right now. Please try again later.';
+      } finally {
+        button.disabled = false;
+        button.textContent = 'send_message()';
+      }
+    }
+  </script>
 </body>
 
 </html>
